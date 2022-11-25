@@ -35,10 +35,10 @@ jobs:
 workflows:
   build_deploy:
     jobs:
-      - build-and-test:
+      - build-and-test
       - deploy:
           requires:
-            - build
+            - build-and-test
           filters:
             branches:
               only:
