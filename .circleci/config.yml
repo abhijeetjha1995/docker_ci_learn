@@ -25,8 +25,8 @@ jobs:
           working_directory: /
           command: |
             sudo apt-get -y -qq update
-            sudo apt-get install python3-pip python3-dev build-essential
-            sudo pip install awsebcli --upgrade
+            sudo apt install python3-pip python3-dev build-essential
+            sudo pip3 install awsebcli --upgrade
       - run:
           name: Deploying
           command: eb deploy $CIRCLE_BRANCH-my-application
