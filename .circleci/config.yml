@@ -30,11 +30,5 @@ workflows:
   build_deploy:
     jobs:
       - build-and-test
-      - deploy:
-          requires:
-            - build-and-test
-          filters:
-            branches:
-              only:
-                - staging
-                - main
+      - deploy
+          
