@@ -17,7 +17,7 @@ jobs:
   deploy:
     working_directory: ~/app
     docker:
-      - image: circleci/node:10.15.1
+      - image: circleci/ruby:2.4.3
     steps:
       - checkout
       - run:
@@ -27,9 +27,6 @@ jobs:
             sudo apt-get -y -qq update
             sudo apt-get install python3-pip python3-dev build-essential
             sudo pip3 install awsebcli
-      - run:
-          name: Deploying
-          command: eb deploy $CIRCLE_BRANCH-my-application
 
 workflows:
   build_deploy:
