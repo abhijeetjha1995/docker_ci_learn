@@ -17,7 +17,7 @@ jobs:
   deploy:
     working_directory: ~/app
     docker:
-      - image: circleci/ruby:2.4.3
+      - image: circleci/node:10.15.1
     steps:
       - checkout
       - run:
@@ -25,10 +25,17 @@ jobs:
           working_directory: /
           command: |
             sudo apt-get -y -qq update
+            sudo apt-get install python3-pip python3-dev build-essential
 
 workflows:
   build_deploy:
     jobs:
       - build-and-test
-      - deploy
-          
+      - deploy:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only:
+                - staging
+                - main
