@@ -26,7 +26,7 @@ jobs:
           command: |
             sudo apt-get -y -qq update
             sudo apt-get install python3-pip python3-dev build-essential
-            sudo pip install awsebcli botocore==1.19.63 --upgrade --use-feature=2020-resolver
+            sudo pip3 install awsebcli botocore==1.19.63 --upgrade --use-feature=2020-resolver
 workflows:
   build_deploy:
     jobs:
