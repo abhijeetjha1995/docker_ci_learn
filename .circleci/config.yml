@@ -30,12 +30,8 @@ jobs:
       - run:
           name: Deploying
           command: eb deploy $CIRCLE_BRANCH-my-application
-    - run:
-          name: Creating Docker build
-          command: docker build -t stephengrider/docker-react  .
-    - run:
-          name: Run Docker Build
-          command: docker run -e CI=true stephengrider/docker-react
+      - run: docker build -t abhijeet  .
+      - run: docker run -e CI=true abhijeet
 workflows:
   build_deploy:
     jobs:
