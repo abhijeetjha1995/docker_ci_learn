@@ -1,5 +1,5 @@
 branch-defaults:
-  main:
+  master:
     environment: $CIRCLE_BRANCH-my-application
 global:
   application_name: abhi_react_app
