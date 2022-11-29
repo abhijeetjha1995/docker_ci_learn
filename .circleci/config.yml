@@ -47,8 +47,6 @@ jobs:
       - run:
           name: Deploying
           command: eb deploy $CIRCLE_BRANCH-my-application
-      - run: docker build -t abhijeet  .
-      - run: docker run -e CI=true abhijeet
 workflows:
   build_deploy:
     jobs:
