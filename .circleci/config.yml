@@ -50,6 +50,7 @@ jobs:
       - run: docker build -t abhijeet  .
       - run: docker run -e CI=true abhijeet
 workflows:
+  version: 2.1
   build_deploy:
     jobs:
       - build-and-test
