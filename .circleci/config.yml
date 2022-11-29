@@ -47,6 +47,7 @@ jobs:
       - run:
           name: Deploying
           command: eb deploy $CIRCLE_BRANCH-my-application
+
 workflows:
   build_deploy:
     jobs:
@@ -58,4 +59,4 @@ workflows:
             branches:
               only:
                 - staging
-                - main
+                - master
