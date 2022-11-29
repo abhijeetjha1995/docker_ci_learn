@@ -1,6 +1,6 @@
 branch-defaults:
   main:
-    environment: main-my-application
+    environment: $CIRCLE_BRANCH-my-application
 global:
   application_name: abhi_react_app
   default_ec2_keyname: main-my-application
