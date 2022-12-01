@@ -46,11 +46,8 @@ jobs:
             sudo pip3 install awsebcli botocore==1.19.63 --upgrade
       - run:
           name: Deploying
-          command: eb deploy $CIRCLE_BRANCH-my-application
-      - run: docker build -t abhijeet  .
-      - run: docker run -e CI=true abhijeet 
+          command: eb deploy $CIRCLE_BRANCH-my-application 
 workflows:
-  version: 2.1
   build_deploy:
     jobs:
       - build-and-test
