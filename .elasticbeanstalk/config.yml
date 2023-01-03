@@ -4,6 +4,6 @@ branch-defaults:
 global:
   application_name: my_react_app
   default_ec2_keyname: Myreactapp-env
-  default_platform: 64bit Amazon Linux 2017.09 v3.5.1 running Ruby 2.4 (Passenger Standalone)
+  default_platform: 64bit Amazon Linux 2/3.5.3
   default_region: ap-south-1
   sc: git
