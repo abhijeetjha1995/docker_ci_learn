@@ -25,20 +25,27 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
 
-      - run: npm install
+      # - run: npm install
 
       - save_cache:
           paths:
           - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      # - run:
+      #     name: Installing deployment dependencies
+      #     working_directory: /
+      #     command: |
+      #       sudo apt-get -y -qq update
+      #       sudo apt-get install python3-pip python3-dev build-essential
+      #       sudo pip3 install awsebcli botocore==1.19.63 --upgrade
+
       - run:
-          name: Installing deployment dependencies
-          working_directory: /
-          command: |
-            sudo apt-get -y -qq update
-            sudo apt-get install python3-pip python3-dev build-essential
-            sudo pip3 install awsebcli botocore==1.19.63 --upgrade
+            working_directory: /
+            name: installing ebcli
+            command: pip3 install awsebcli --upgrade --user
+      - run: eb --version
+
       - run:
           name: Deploying
           command: eb deploy Myreactapp-env
