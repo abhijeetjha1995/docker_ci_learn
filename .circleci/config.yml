@@ -9,7 +9,7 @@ jobs:
       - image: cimg/node:16.10
     steps:
       - checkout
-      - node/install
+      # - node/install
       - run: npm install
       - run:
           name: Run tests
