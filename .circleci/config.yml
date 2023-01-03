@@ -48,6 +48,7 @@ jobs:
               sudo apt-get install python3-pip python3-dev build-essential
               sudo pip3 install awsebcli botocore==1.19.63 --upgrade
       - run: eb --version
+      - run: docker build -t abhijeet/docker-react .
 
       - run:
           name: Deploying
