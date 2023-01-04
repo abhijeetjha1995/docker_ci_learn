@@ -49,7 +49,7 @@ jobs:
           command: |
             docker build -t stephengrider/docker-react .
 
-      -run: 
+      - run: 
           name: Run Docker 
           command: |
             docker run -e CI=true stephengrider/docker-react
