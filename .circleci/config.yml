@@ -50,7 +50,7 @@ jobs:
           command: | 
               sudo apt-get update
               sudo apt install docker.io
-              sudo snap install docker
+              # sudo snap install docker
 
       - run:
           name: Build application Docker image
