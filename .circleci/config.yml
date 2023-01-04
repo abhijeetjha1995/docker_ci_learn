@@ -5,15 +5,12 @@ version: 2.1
 
 orbs:
   aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
-  node: circleci/node:10.15.1
+  node: circleci/node@4.7
 
 jobs:
   build-and-test:
-    # docker:
-    #   - image: cimg/node:16.10
     docker:
-      # replace with your preferred image
-      - image: cimg/base:stable
+      - image: cimg/node:16.10
     steps:
       - checkout
       # - node/install
@@ -24,7 +21,8 @@ jobs:
   deploy:
     working_directory: ~/app
     docker:
-      - image: cimg/deploy:2022.10.1-node
+      # - image: cimg/deploy:2022.10.1-node
+        - image: cimg/base:stable
     steps:
       - checkout
       - restore_cache:
