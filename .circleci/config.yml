@@ -40,9 +40,12 @@ jobs:
       #       sudo apt-get install python3-pip python3-dev build-essential
       #       sudo pip3 install awsebcli botocore==1.19.63 --upgrade
 
-      # - run:
-      #     name: Install Docker client
-      #     command: apk add docker-cli
+      - run:
+          name: Install Docker client
+          command: | 
+              sudo apt-get update
+              sudo apt install docker.io
+              sudo snap install docker
 
       - run:
           name: Build application Docker image
