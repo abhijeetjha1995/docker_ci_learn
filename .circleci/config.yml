@@ -23,6 +23,8 @@ jobs:
     docker:
       # - image: cimg/deploy:2022.10.1-node
         - image: cimg/python:3.8
+    machine:
+      enabled: true
     steps:
       - checkout
       - restore_cache:
