@@ -6,6 +6,7 @@ version: 2.1
 orbs:
   aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
   node: circleci/node@4.7
+  docker: circleci/docker@2.2.0
 
 jobs:
   build-and-test:
@@ -23,8 +24,10 @@ jobs:
     docker:
       - image: cimg/deploy:2022.10.1-node
       - image: cimg/python:3.8
+    executor: docker/machine
     steps:
       - checkout
+      - docker/check
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
@@ -60,7 +63,7 @@ jobs:
             VER="17.03.0-ce"
             curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            # mv /tmp/docker/* /usr/bin
+            mv /tmp/docker/* /usr/bin
             sudo service docker start
 
       - run:
