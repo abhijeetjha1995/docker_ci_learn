@@ -20,7 +20,8 @@ jobs:
           name: Run tests
           command: npm test
   deploy:
-    machine: true
+    machine: # executor type
+      image: ubuntu-2004:202010-01
     working_directory: ~/app
     docker:
       - image: cimg/deploy:2022.10.1-node
