@@ -22,7 +22,7 @@ jobs:
     working_directory: ~/app
     docker:
       # - image: cimg/deploy:2022.10.1-node
-        - image: cimg/base:2023.01
+        - image: cimg/python:3.8
     steps:
       - checkout
       - restore_cache:
