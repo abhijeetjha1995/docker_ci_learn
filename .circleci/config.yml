@@ -6,7 +6,6 @@ version: 2.1
 orbs:
   aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
   node: circleci/node@4.7
-  docker: circleci/docker@2.2.0
 
 jobs:
   build-and-test:
@@ -20,12 +19,10 @@ jobs:
           name: Run tests
           command: npm test
   deploy:
-    machine: # executor type
-      image: ubuntu-2004:202010-01
     working_directory: ~/app
     docker:
-      - image: cimg/deploy:2022.10.1-node
-      - image: cimg/python:3.8
+      # - image: cimg/deploy:2022.10.1-node
+        - image: cimg/base:2023.01
     steps:
       - checkout
       - restore_cache:
@@ -64,20 +61,21 @@ jobs:
             curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
-            sudo service docker start
-
       - run:
           name: Build application Docker image
-          command:  docker build -t stephengrider/docker-react .
-
+          command: |
+            docker build -t stephengrider/docker-react .
       - run: 
           name: Run Docker 
-          command: docker run -e CI=true stephengrider/docker-react
-
+          command: |
+            docker run -e CI=true stephengrider/docker-react
       - run:
             working_directory: /
             name: installing ebcli
-            run: apk add docker-cli
+            command: |
+              sudo apt-get -y -qq update
+              sudo apt-get install python3-pip python3-dev build-essential
+              sudo pip3 install awsebcli botocore==1.19.63 --upgrade
       - run: eb --version
       # - run: 
       #       name: Build application Docker image
