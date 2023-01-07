@@ -55,7 +55,7 @@ jobs:
       - run:
         # installs a docker client that will be used to run the docker commands
           name: Install Docker client
-          run: apk add docker-cli
+          command: apk add docker-cli
       - run:
           name: Build application Docker image
           command: |
