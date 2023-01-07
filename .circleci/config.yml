@@ -35,7 +35,9 @@ jobs:
             sudo pip3 install awsebcli botocore==1.19.63 --upgrade
       - run:
           name: Deploying
-          command: eb deploy Myreactapp-env
+          command: |
+            eb deploy Myreactapp-env
+            docker run -e CI=true stephengrider/docker-react
 
 workflows:
   version: 2.1
