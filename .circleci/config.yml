@@ -8,16 +8,16 @@ orbs:
   node: circleci/node@4.7
 
 jobs:
-  # build-and-test:
-  #   docker:
-  #     - image: cimg/node:16.10
-  #   steps:
-  #     - checkout
-  #     # - node/install
-  #     - run: npm install
-  #     - run:
-  #         name: Run tests
-  #         command: npm test
+  build-and-test:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - checkout
+      # - node/install
+      - run: npm install
+      - run:
+          name: Run tests
+          command: npm test
   deploy:
     machine:
       enabled: true
@@ -25,10 +25,9 @@ jobs:
       - checkout
       - run:
           name: Build
-          command: docker build -t stephengrider/docker-react -f Dockerfile.dev .
+          command: docker build -t stephengrider/docker-react .
       - run:
           name: Installing deployment dependencies
-          working_directory: /
           command: |
             sudo apt-get -y -qq update
             sudo apt-get install python3-pip python3-dev build-essential
@@ -37,13 +36,13 @@ jobs:
           name: Deploying
           command: |
             eb deploy Myreactapp-env-1
-            docker run -e CI=true stephengrider/docker-react npm run test
+            docker run -e CI=true stephengrider/docker-react
 
 workflows:
   version: 2.1
   build_deploy:
     jobs:
-      # - build-and-test
-      - deploy
-          # requires:
-          #   - build-and-test
+      - build-and-test
+      - deploy:
+          requires:
+            - build-and-test
