@@ -1,9 +1,9 @@
 branch-defaults:
   main:
-    environment: Myreactapp-env
+    environment: Myreactapp-env-1
 global:
   application_name: my_react_app
-  default_ec2_keyname: Myreactapp-env
+  default_ec2_keyname: Myreactapp-env-1
   default_platform: 64bit Amazon Linux 2/3.5.3
   default_region: ap-south-1
   sc: git
