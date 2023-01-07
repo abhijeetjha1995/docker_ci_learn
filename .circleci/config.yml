@@ -26,10 +26,8 @@ jobs:
     docker:
       - image: cimg/deploy:2022.10.1-node
       - image: cimg/python:3.8
-    executor: docker/machine
     steps:
       - checkout
-      - docker/check
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
