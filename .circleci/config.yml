@@ -27,6 +27,10 @@ jobs:
           name: Build
           command: docker build -t stephengrider/docker-react .
       - run:
+          name: Running Docker Image
+          command: |
+            docker run -e CI=true stephengrider/docker-react
+      - run:
           name: Installing deployment dependencies
           command: |
             sudo apt-get -y -qq update
@@ -34,9 +38,8 @@ jobs:
             sudo pip3 install awsebcli botocore==1.19.63 --upgrade
       - run:
           name: Deploying
+          working_directory: ~/app
           command: |
-            docker run -it stephengrider/docker-react sh
-            ls
             eb deploy Myreactapp-env-1
 
 workflows:
