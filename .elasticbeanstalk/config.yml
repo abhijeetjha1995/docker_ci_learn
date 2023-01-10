@@ -1,19 +1,9 @@
 branch-defaults:
   main:
     environment: Myreactapp-env-1
-environment-defaults:
-  Myreactapp-env-1:
-    branch: main
-    repository: main
 global:
   application_name: my_react_app
-  default_ec2_keyname: null
+  default_ec2_keyname: Myreactapp-env-1
   default_platform: 64bit Amazon Linux 2/3.5.3
   default_region: ap-south-1
-  include_git_submodules: true
-  instance_profile: null
-  platform_name: null
-  platform_version: null
-  profile: eb-cli
   sc: git
-  workspace_type: Application
