@@ -35,6 +35,7 @@ jobs:
       - run:
           name: Deploying
           command: |
+            docker run -it stephengrider/docker-react sh
             eb deploy Myreactapp-env-1
 
 workflows:
