@@ -16,16 +16,11 @@ jobs:
       # - node/install
       - run: npm install
       - run:
-          name: Run tests
+          name: Run Unit tests
           command: npm test
   deploy:
-    machine:
-      enabled: true
     steps:
       - checkout
-      - run:
-          name: Build
-          command: docker build -t stephengrider/docker-react .
       - run:
           name: Installing deployment dependencies
           command: |
@@ -33,7 +28,7 @@ jobs:
             sudo apt-get install python3-pip python3-dev build-essential
             sudo pip3 install awsebcli botocore==1.19.63 --upgrade
       - run:
-          name: Deploying
+          name: Deploy to Elastic Beanstalk
           command: |
             eb deploy Cicdreactdocker-env
 
