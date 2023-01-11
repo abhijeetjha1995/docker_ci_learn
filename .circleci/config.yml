@@ -21,29 +21,25 @@ jobs:
   deploy:
     machine:
       enabled: true
-    # steps:
-    #   - checkout
-    #   - run:
-    #       name: Build
-    #       command: docker build -t stephengrider/docker-react .
-    #   # - run:
-    #   #     name: Running Docker Image
-    #   #     command: |
-    #   #       docker run -e CI=true stephengrider/docker-react
-    #   - run:
-    #       name: Installing deployment dependencies
-    #       command: |
-    #         sudo apt-get -y -qq update
-    #         sudo apt-get install python3-pip python3-dev build-essential
-    #         sudo pip3 install awsebcli botocore==1.19.63 --upgrade
-    #   - run:
-    #       name: Deploying
-    #       command: |
-    #         eb deploy Myreactapp-env-1
-    - aws-elastic-beanstalk/deploy:
-            application-name: my_react_app 
-            environment-name: Myreactapp-env-1 
-            label: Deploy
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: docker build -t stephengrider/docker-react .
+      # - run:
+      #     name: Running Docker Image
+      #     command: |
+      #       docker run -e CI=true stephengrider/docker-react
+      - run:
+          name: Installing deployment dependencies
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python3-pip python3-dev build-essential
+            sudo pip3 install awsebcli botocore==1.19.63 --upgrade
+      - run:
+          name: Deploying
+          command: |
+            eb deploy Myreactapp-env-1
 
 workflows:
   version: 2.1
