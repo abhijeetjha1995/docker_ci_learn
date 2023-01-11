@@ -26,10 +26,6 @@ jobs:
       - run:
           name: Build
           command: docker build -t stephengrider/docker-react .
-      # - run:
-      #     name: Running Docker Image
-      #     command: |
-      #       docker run -e CI=true stephengrider/docker-react
       - run:
           name: Installing deployment dependencies
           command: |
@@ -39,7 +35,7 @@ jobs:
       - run:
           name: Deploying
           command: |
-            eb deploy Myreactapp-env-1
+            eb deploy Cicdreactdocker-env
 
 workflows:
   version: 2.1

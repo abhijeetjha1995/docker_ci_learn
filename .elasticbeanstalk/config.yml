@@ -1,9 +1,9 @@
 branch-defaults:
   main:
-    environment: Myreactapp-env-1
+    environment: Cicdreactdocker-env
 global:
-  application_name: my_react_app
-  default_ec2_keyname: Myreactapp-env-1
+  application_name: ci_cd_react_docker
+  default_ec2_keyname: Cicdreactdocker-env
   default_platform: 64bit Amazon Linux 2/3.5.3
   default_region: ap-south-1
   sc: git
